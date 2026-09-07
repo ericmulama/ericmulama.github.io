@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Erick Mulama Shituku — Geospatial &amp; Remote Sensing Consultant</title>
+<meta name="description" content="Portfolio of Erick Mulama Shituku — GIS &amp; remote sensing consultant based in Nairobi, Kenya. Marine spatial planning, environmental MRV &amp; carbon accounting, and water-sector GIS across East Africa.">
+<meta name="author" content="Erick Mulama Shituku">
+<meta property="og:title" content="Erick Mulama Shituku — Geospatial &amp; Remote Sensing Consultant">
+<meta property="og:description" content="Marine spatial planning, environmental MRV &amp; carbon accounting, and water-sector GIS across East Africa. 11+ years experience.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#0E3A4C">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='16' fill='%230E3A4C'/%3E%3Ctext x='50' y='68' font-size='58' text-anchor='middle' fill='%23F4F6F2' font-family='Georgia,serif'%3EM%3C/text%3E%3C/svg%3E">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+  :root{
+    --paper:#F4F6F2;
+    --paper-raised:#ECEFE9;
+    --ink:#14211F;
+    --ink-soft:#3E4E49;
+    --ocean:#0E3A4C;
+    --ocean-soft:#3E6478;
+    --coral:#B84B29;
+    --mangrove:#3F6B52;
+    --sand:#D9D0B4;
+    --line: rgba(20,33,31,0.14);
+    --shadow: 0 1px 2px rgba(14,58,76,0.06);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#101A1B;
+      --paper-raised:#16211F;
+      --ink:#E7EEEA;
+      --ink-soft:#AEC0BA;
+      --ocean:#7FB9CE;
+      --ocean-soft:#5D8FA0;
+      --coral:#E08A63;
+      --mangrove:#8FC29F;
+      --sand:#4A4D3C;
+      --line: rgba(231,238,234,0.16);
+      --shadow: 0 1px 2px rgba(0,0,0,0.3);
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#101A1B;
+    --paper-raised:#16211F;
+    --ink:#E7EEEA;
+    --ink-soft:#AEC0BA;
+    --ocean:#7FB9CE;
+    --ocean-soft:#5D8FA0;
+    --coral:#E08A63;
+    --mangrove:#8FC29F;
+    --sand:#4A4D3C;
+    --line: rgba(231,238,234,0.16);
+    --shadow: 0 1px 2px rgba(0,0,0,0.3);
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'IBM Plex Sans',system-ui,sans-serif;
+    line-height:1.55;
+  }
+  .wrap{max-width:920px;margin:0 auto;padding:0 28px;}
+  h1,h2,h3{font-family:'Playfair Display',Georgia,serif;font-weight:600;text-wrap:balance;margin:0;}
+  .mono{font-family:'IBM Plex Mono',ui-monospace,monospace;}
+  a{color:var(--ocean);}
+  img{display:block;width:100%;height:auto;border-radius:2px;}
+
+  /* NAV */
+  nav{
+    position:sticky;top:0;z-index:20;
+    background:color-mix(in srgb, var(--paper) 88%, transparent);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;padding:14px 28px;flex-wrap:wrap;gap:6px 18px;}
+  .brand{font-family:'Playfair Display',serif;font-weight:600;font-size:1.05rem;letter-spacing:0.01em;white-space:nowrap;}
+  .navlinks{display:flex;gap:22px;font-size:0.86rem;}
+  .navlinks a{color:var(--ink-soft);text-decoration:none;}
+  .navlinks a:hover{color:var(--ocean);}
+  @media (max-width:480px){.navlinks{gap:14px;font-size:0.8rem;}}
+
+  /* HERO */
+  header.hero{padding:64px 0 40px;border-bottom:1px solid var(--line);}
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;
+    color:var(--mangrove);margin-bottom:14px;display:block;
+  }
+  .hero h1{font-size:clamp(1.9rem,4vw,2.7rem);color:var(--ocean);max-width:23ch;line-height:1.15;}
+  .hero .role{font-size:1.05rem;color:var(--ink-soft);margin-top:10px;max-width:46ch;}
+  .hero p.lede{margin-top:22px;font-size:1.02rem;max-width:62ch;color:var(--ink);}
+  .hero-inner{display:flex;gap:36px;align-items:flex-start;flex-wrap:wrap-reverse;}
+  .hero-text{flex:1 1 440px;min-width:280px;}
+  .hero-photo{flex:0 0 168px;width:168px;}
+  .hero-photo img{width:168px;height:168px;object-fit:cover;border-radius:6px;border:1px solid var(--line);box-shadow:var(--shadow);}
+  @media (max-width:600px){.hero-photo,.hero-photo img{width:120px;height:120px;}}
+  .stamp{
+    margin-top:30px;
+    display:flex;flex-wrap:wrap;gap:0;
+    border:1px solid var(--line);border-radius:3px;overflow:hidden;
+    font-family:'IBM Plex Mono',monospace;font-size:0.76rem;
+  }
+  .stamp div{padding:10px 16px;border-right:1px solid var(--line);flex:1;min-width:150px;}
+  .stamp div:last-child{border-right:none;}
+  .stamp .k{display:block;color:var(--ink-soft);text-transform:uppercase;letter-spacing:0.06em;font-size:0.65rem;margin-bottom:3px;}
+
+  /* SECTION HEADERS */
+  section{padding:56px 0;border-bottom:1px solid var(--line);}
+  .sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:28px;}
+  .sec-num{font-family:'IBM Plex Mono',monospace;color:var(--coral);font-size:0.85rem;}
+  .sec-head h2{font-size:1.6rem;color:var(--ocean);}
+  .sec-intro{max-width:64ch;color:var(--ink-soft);margin-bottom:36px;}
+
+  /* PLATE (project) */
+  .plate{margin-bottom:64px;}
+  .plate:last-child{margin-bottom:0;}
+  .plate-head{display:flex;justify-content:space-between;align-items:flex-start;gap:18px;flex-wrap:wrap;margin-bottom:14px;}
+  .plate-title h3{font-size:1.4rem;color:var(--ink);}
+  .plate-client{font-size:0.85rem;color:var(--ink-soft);margin-top:4px;}
+  .plate-num{font-family:'IBM Plex Mono',monospace;font-size:0.75rem;color:var(--ocean-soft);white-space:nowrap;}
+  .tags{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 18px;}
+  .tag{
+    font-family:'IBM Plex Mono',monospace;font-size:0.68rem;letter-spacing:0.03em;
+    padding:4px 9px;border-radius:20px;border:1px solid var(--line);color:var(--ink-soft);
+  }
+  .plate-body p{max-width:68ch;margin:0 0 14px;}
+  .plate-body ul{max-width:68ch;padding-left:1.15em;margin:0 0 14px;}
+  .plate-body li{margin-bottom:6px;}
+
+  .gallery{display:grid;grid-template-columns:1.3fr 1fr;gap:10px;margin:22px 0;}
+  .gallery figure{margin:0;background:var(--paper-raised);border:1px solid var(--line);padding:6px;border-radius:4px;}
+  .gallery figure.span2{grid-column:1 / -1;}
+  .gallery figcaption{
+    font-family:'IBM Plex Mono',monospace;font-size:0.68rem;color:var(--ink-soft);
+    padding:8px 4px 2px;display:flex;justify-content:space-between;gap:8px;
+  }
+  @media (max-width:680px){.gallery{grid-template-columns:1fr;}}
+
+  .metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin:20px 0;border-radius:4px;overflow:hidden;}
+  .metrics div{background:var(--paper);padding:14px 16px;}
+  .metrics .num{font-family:'IBM Plex Mono',monospace;font-size:1.35rem;color:var(--coral);display:block;}
+  .metrics .lab{font-size:0.74rem;color:var(--ink-soft);}
+
+  .plate-foot{
+    margin-top:18px;padding-top:12px;border-top:1px dashed var(--line);
+    font-family:'IBM Plex Mono',monospace;font-size:0.7rem;color:var(--ink-soft);
+    display:flex;flex-wrap:wrap;gap:18px;
+  }
+
+  /* PROCESS DIAGRAM (TAVEVO) */
+  .flow{display:flex;flex-wrap:wrap;gap:0;margin:26px 0;counter-reset:step;}
+  .flow-step{
+    flex:1 1 140px;position:relative;padding:16px 14px 14px;
+    border:1px solid var(--line);background:var(--paper-raised);
+    margin:-1px -1px 0 0;
+  }
+  .flow-step .n{font-family:'IBM Plex Mono',monospace;color:var(--coral);font-size:0.75rem;display:block;margin-bottom:6px;}
+  .flow-step h4{margin:0;font-size:0.83rem;font-family:'IBM Plex Sans';font-weight:600;line-height:1.3;}
+
+  .pillars{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin:22px 0;}
+  .pillar{border:1px solid var(--line);border-radius:4px;padding:14px 16px;background:var(--paper-raised);}
+  .pillar .k{font-family:'IBM Plex Mono',monospace;font-size:0.68rem;color:var(--mangrove);text-transform:uppercase;letter-spacing:0.05em;}
+  .pillar p{margin:6px 0 0;font-size:0.85rem;color:var(--ink-soft);}
+
+  /* SLEEK pipeline */
+  .pipeline{display:flex;align-items:center;gap:0;margin:24px 0;overflow-x:auto;padding-bottom:6px;}
+  .pipe-node{
+    flex:0 0 auto;min-width:120px;text-align:center;padding:14px 10px;
+    border:1px solid var(--line);border-radius:4px;background:var(--paper-raised);font-size:0.78rem;
+  }
+  .pipe-arrow{flex:0 0 auto;padding:0 8px;color:var(--ocean-soft);font-family:'IBM Plex Mono',monospace;}
+
+  .ref-figure{float:right;width:200px;margin:2px 0 16px 22px;background:var(--paper-raised);border:1px solid var(--line);padding:6px;border-radius:4px;}
+  .ref-figure img{border-radius:2px;}
+  .ref-figure figcaption{font-family:'IBM Plex Mono',monospace;font-size:0.64rem;color:var(--ink-soft);padding:8px 2px 0;line-height:1.45;}
+  @media (max-width:600px){.ref-figure{float:none;width:200px;margin:4px auto 20px;}}
+
+  /* TOOLS */
+  .tool-groups{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:22px;}
+  .tool-group h4{font-family:'IBM Plex Mono',monospace;font-size:0.72rem;text-transform:uppercase;letter-spacing:0.07em;color:var(--mangrove);margin-bottom:10px;}
+  .tool-list{display:flex;flex-wrap:wrap;gap:7px;}
+  .tool-list span{
+    font-size:0.78rem;padding:5px 10px;border:1px solid var(--line);border-radius:3px;color:var(--ink-soft);
+  }
+
+  /* EXPERIENCE TIMELINE */
+  .tl{border-left:2px solid var(--line);margin-left:6px;}
+  .tl-item{position:relative;padding:2px 0 26px 22px;}
+  .tl-item::before{
+    content:"";position:absolute;left:-6px;top:6px;width:10px;height:10px;border-radius:50%;
+    background:var(--paper);border:2px solid var(--coral);
+  }
+  .tl-item .yr{font-family:'IBM Plex Mono',monospace;font-size:0.72rem;color:var(--ocean-soft);}
+  .tl-item h4{font-size:1rem;margin:3px 0 2px;font-family:'IBM Plex Sans';font-weight:600;}
+  .tl-item .org{font-size:0.86rem;color:var(--ink-soft);}
+
+  /* FOOTER */
+  footer{padding:56px 0 72px;}
+  .contact-grid{display:flex;flex-wrap:wrap;gap:34px;margin-top:22px;}
+  .contact-grid a{font-size:0.95rem;text-decoration:none;border-bottom:1px solid var(--line);padding-bottom:2px;}
+  .fine{margin-top:40px;font-size:0.74rem;color:var(--ink-soft);font-family:'IBM Plex Mono',monospace;}
+</style>
+</head>
+<body>
+<nav>
+  <div class="wrap">
+    <div class="brand">Erick Mulama Shituku</div>
+    <div class="navlinks">
+      <a href="#work">Work</a>
+      <a href="#approach">Approach</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-inner">
+      <div class="hero-text">
+        <span class="eyebrow">Geospatial &amp; Remote Sensing Consultant — Nairobi, Kenya</span>
+        <h1>Turning satellite imagery and field data into decisions people can act on.</h1>
+        <p class="role">Marine spatial planning · environmental MRV &amp; carbon accounting · water-sector GIS</p>
+        <p class="lede">Eleven years designing spatial data systems across East Africa — from national land-cover baselines built for Kenya's greenhouse-gas accounting, to a marine spatial planning atlas for UNEP's Nairobi Convention, to GIS-readiness roadmaps for water utilities. The thread through all of it: earth-observation and field data, structured into a spatial database, delivered as a map or dashboard someone can actually use.</p>
+      </div>
+      <div class="hero-photo">
+        <img src="images/headshot.jpg" alt="Portrait of Erick Mulama Shituku">
+      </div>
+    </div>
+    <div class="stamp">
+      <div><span class="k">Based in</span>Nairobi, Kenya</div>
+      <div><span class="k">Experience</span>11+ years</div>
+      <div><span class="k">Currently</span>MSc GIS &amp; Remote Sensing, JKUAT</div>
+      <div><span class="k">Languages</span>English, Kiswahili</div>
+    </div>
+  </div>
+</header>
+
+<section id="work">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num mono">01</span><h2>Selected Work</h2></div>
+    <p class="sec-intro">Three deliverables spanning the range of the work: a marine spatial planning atlas built for a UN body, an enterprise-GIS roadmap for a water utility, and national-scale land-cover mapping that feeds Kenya's carbon accounting.</p>
+
+    <!-- PLATE 01 -->
+    <article class="plate">
+      <div class="plate-head">
+        <div class="plate-title">
+          <h3>Marine Spatial Planning Atlas — Kwale &amp; Lamu Counties</h3>
+          <div class="plate-client">Client: Nairobi Convention Secretariat / UNEP · GIS &amp; Remote Sensing Specialist</div>
+        </div>
+        <div class="plate-num mono">PLATE&nbsp;01 · 2026</div>
+      </div>
+      <div class="tags">
+        <span class="tag">PostGIS</span><span class="tag">ArcGIS REST</span><span class="tag">Python</span>
+        <span class="tag">ISO 19115/19139</span><span class="tag">Marine &amp; Coastal GIS</span>
+      </div>
+      <div class="plate-body">
+        <p>Built the geospatial backbone for Kenya's marine spatial plan across two coastal counties — pulling 17 thematic data layers (bathymetry, coral reefs, mangroves, seagrass, fisheries, marine protected areas, human uses) into a structured PostGIS database, then producing the thematic maps that planners and government officials actually use to make zoning decisions.</p>
+        <ul>
+          <li>Digitised spatial features from planning documents, technical reports, and participatory mapping sessions with coastal communities.</li>
+          <li>Designed a production PostGIS schema — 8 schemas, 33 spatial tables, spatial indexes and audit triggers — with a Python ingestion pipeline that auto-discovers and reprojects incoming datasets.</li>
+          <li>Ran the spatial analysis behind the plan: conflict detection between human uses and marine habitats, conservation-gap analysis, and coverage against Kenya's 30×30 biodiversity targets.</li>
+          <li>Authored ISO 19115/19139-compliant metadata for every dataset so the atlas integrates into the national MSP data catalogue.</li>
+        </ul>
+      </div>
+
+      <div class="gallery">
+        <figure class="span2">
+          <img src="images/kwale-study-area.jpg" alt="Kwale County study area map showing the MSP planning boundary, coastline, mangroves, seagrass and coral reef along the southern coast">
+          <figcaption><span>Kwale County study area — 786k scale</span><span>WGS 1984 / UTM 37S</span></figcaption>
+        </figure>
+        <figure>
+          <img src="images/lamu-study-area.jpg" alt="Lamu County study area map showing the Lamu Archipelago and its mangrove ecosystem">
+          <figcaption><span>Lamu Archipelago study area</span><span>WGS 1984 / UTM 37S</span></figcaption>
+        </figure>
+        <figure>
+          <img src="images/base-context.jpg" alt="Base context map showing Kenya's territorial sea and exclusive economic zone along the Kwale-Lamu coast">
+          <figcaption><span>Territorial sea &amp; EEZ context</span><span>1:39M</span></figcaption>
+        </figure>
+        <figure>
+          <img src="images/marine-habitats-kwale.jpg" alt="Marine habitats map of Kwale showing mangrove cover, seagrass, coral reef and marine protected areas">
+          <figcaption><span>Marine habitats — Kwale</span><span>Mangrove / seagrass / reef</span></figcaption>
+        </figure>
+        <figure>
+          <img src="images/kwale-human-uses.jpg" alt="Marine human uses map of Kwale showing fisheries, tourism, infrastructure and cultural sites">
+          <figcaption><span>Human uses — Kwale</span><span>Fisheries / tourism / infrastructure</span></figcaption>
+        </figure>
+      </div>
+
+      <div class="metrics">
+        <div><span class="num">17</span><span class="lab">thematic data layers</span></div>
+        <div><span class="num">33</span><span class="lab">spatial database tables</span></div>
+        <div><span class="num">2</span><span class="lab">counties mapped</span></div>
+        <div><span class="num">3</span><span class="lab">CRS transforms in the pipeline</span></div>
+      </div>
+      <div class="plate-foot">
+        <span>Role: GIS &amp; Remote Sensing Specialist</span>
+        <span>Stack: PostGIS · GeoPandas · ArcGIS Online REST · QGIS · Leaflet</span>
+      </div>
+    </article>
+
+    <!-- PLATE 02 -->
+    <article class="plate">
+      <div class="plate-head">
+        <div class="plate-title">
+          <h3>Enterprise GIS Readiness &amp; Roadmap — Njoro Kubwa Bulk Water Supply</h3>
+          <div class="plate-client">Client: TAVEVO Water &amp; Sewerage Co. Ltd, Taita Taveta County · GIS Specialist</div>
+        </div>
+        <div class="plate-num mono">PLATE&nbsp;02 · 2026</div>
+      </div>
+      <div class="tags">
+        <span class="tag">GIS Readiness Assessment</span><span class="tag">Stakeholder Engagement</span>
+        <span class="tag">Non-Revenue Water</span><span class="tag">Water-Sector GIS</span>
+      </div>
+      <div class="plate-body">
+        <p>Before a water utility can build a GIS, someone has to answer an unglamorous question honestly: is the organisation actually ready for one? This engagement assessed TAVEVO's governance, data, people, and technology against enterprise-GIS adoption, then translated the findings into a phased, costed roadmap the utility's board could act on.</p>
+        <p>Assessment spanned consultations with TAVEVO's technical, commercial, finance, legal, ICT and HR departments alongside external regulators and stakeholders — WASREB, WRA, WSTF, the Water Tribunal, county water and lands departments, and the Ministry of Water — evaluating spatial data completeness, positional accuracy, and institutional capacity for enterprise adoption.</p>
+      </div>
+
+      <div class="pillars">
+        <div class="pillar"><span class="k">Asset Management</span><p>Mapping pipelines, valves, tanks and reservoirs into a maintainable spatial inventory.</p></div>
+        <div class="pillar"><span class="k">Operational Intelligence</span><p>Turning field and billing data into geographic non-revenue-water and service insight.</p></div>
+        <div class="pillar"><span class="k">Customer Engagement</span><p>Coverage mapping to target underserved and low-income service areas.</p></div>
+        <div class="pillar"><span class="k">Planning &amp; Engineering</span><p>Spatial groundwork for hydraulic screening and network expansion planning.</p></div>
+      </div>
+
+      <p style="font-size:0.82rem;color:var(--ink-soft);margin:22px 0 6px;">Scope of works, as sequenced and delivered:</p>
+      <div class="flow">
+        <div class="flow-step"><span class="n">01</span><h4>Review &amp; scoping</h4></div>
+        <div class="flow-step"><span class="n">02</span><h4>GIS readiness &amp; needs assessment</h4></div>
+        <div class="flow-step"><span class="n">03</span><h4>Priority use-case ID</h4></div>
+        <div class="flow-step"><span class="n">04</span><h4>Conceptual system design</h4></div>
+        <div class="flow-step"><span class="n">05</span><h4>Hydraulic screening</h4></div>
+        <div class="flow-step"><span class="n">06</span><h4>Prototype web map</h4></div>
+        <div class="flow-step"><span class="n">07</span><h4>Costing &amp; roadmap</h4></div>
+        <div class="flow-step"><span class="n">08</span><h4>Validation &amp; reporting</h4></div>
+      </div>
+
+      <div class="metrics">
+        <div><span class="num">11+</span><span class="lab">institutions engaged</span></div>
+        <div><span class="num">4</span><span class="lab">benefit areas assessed</span></div>
+        <div><span class="num">8</span><span class="lab">phase delivery roadmap</span></div>
+      </div>
+      <div class="plate-foot">
+        <span>Role: GIS Specialist / Geospatial Technologies Team Member</span>
+        <span>Focus: governance · data · people · technology readiness</span>
+      </div>
+    </article>
+
+    <!-- PLATE 03 -->
+    <article class="plate">
+      <div class="plate-head">
+        <div class="plate-title">
+          <h3>National LULC Baselines &amp; GHG/Carbon Accounting</h3>
+          <div class="plate-client">SLEEK Programme (Government of Kenya / Australian Aid) &amp; NASA–SERVIR ESA · GIS Analyst</div>
+        </div>
+        <div class="plate-num mono">PLATE&nbsp;03 · 2014–2017</div>
+      </div>
+      <div class="tags">
+        <span class="tag">Land Use / Land Cover</span><span class="tag">Change Detection</span>
+        <span class="tag">Tier 3 GHG Accounting</span><span class="tag">Remote Sensing</span>
+      </div>
+      <div class="plate-body">
+        <p>Earlier in the work, at RCMRD: building the earth-observation foundations that let a country report its greenhouse-gas emissions credibly. Kenya's <a href="https://www.dfat.gov.au/about-us/publications/Pages/kenya-system-land-based-emissions-estimation-mtr" target="_blank" rel="noopener">System for Land-based Emissions Estimation (SLEEK)</a>, backed by Australian Aid, needed high-precision land-use and land-cover baselines to feed its Full Lands Integration Tool (FLINT) — the engine behind Tier 3 GHG accounting. In parallel, GHG/LULUCF mapping for NASA's <a href="https://servirglobal.net/Regions/ESAfrica" target="_blank" rel="noopener">SERVIR Eastern &amp; Southern Africa</a> programme extended the same methodology regionally.</p>
+      </div>
+
+      <div class="pipeline">
+        <div class="pipe-node">Satellite &amp; aerial imagery</div>
+        <div class="pipe-arrow">→</div>
+        <div class="pipe-node">Land cover classification</div>
+        <div class="pipe-arrow">→</div>
+        <div class="pipe-node">Multi-temporal change detection</div>
+        <div class="pipe-arrow">→</div>
+        <div class="pipe-node">FLINT / GHG accounting inputs</div>
+        <div class="pipe-arrow">→</div>
+        <div class="pipe-node">National carbon stock reporting</div>
+      </div>
+
+      <div class="plate-body">
+        <figure class="ref-figure">
+          <img src="images/kenya-lulc-2016.jpg" alt="Kenya national land cover classification map, 2016 — forest, grassland, cropland, wetlands and settlement classes">
+          <figcaption>Kenya national land cover, 2016<br>RCMRD / SERVIR-Africa · ESA Sentinel-2 LULC<br>Same IPCC class scheme FLINT ingests</figcaption>
+        </figure>
+        <ul>
+          <li>Produced high-precision LULC baseline datasets and multi-temporal change-detection maps across Eastern and Southern Africa.</li>
+          <li>Streamlined multi-institutional remote-sensing workflows to improve accuracy and compliance with IPCC land-sector reporting guidelines.</li>
+          <li>Trained officials from RCMRD's member states — over 10 countries — on GIS, remote sensing and database management.</li>
+        </ul>
+      </div>
+      <div class="plate-foot">
+        <span>Role: GIS Analyst / GIS &amp; Remote Sensing Analyst</span>
+        <span>Programmes verified publicly via DFAT and NASA SERVIR Global</span>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<section id="approach">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num mono">02</span><h2>Tools &amp; Approach</h2></div>
+    <p class="sec-intro">The same underlying toolkit runs through every project above: earth-observation analysis, a well-architected spatial database, field data collection built for rural and low-connectivity conditions, and a dashboard or map at the end that a non-specialist can actually read.</p>
+    <div class="tool-groups">
+      <div class="tool-group">
+        <h4>Spatial Databases &amp; ETL</h4>
+        <div class="tool-list"><span>PostgreSQL</span><span>PostGIS</span><span>MongoDB</span><span>GeoAlchemy2</span><span>SQL</span></div>
+      </div>
+      <div class="tool-group">
+        <h4>Remote Sensing &amp; Analysis</h4>
+        <div class="tool-list"><span>Google Earth Engine</span><span>Python</span><span>R</span><span>GeoPandas</span><span>NumPy / SciPy</span><span>Scikit-learn</span></div>
+      </div>
+      <div class="tool-group">
+        <h4>GIS &amp; Cartography</h4>
+        <div class="tool-list"><span>QGIS</span><span>ArcGIS</span><span>ArcGIS Online</span><span>Leaflet</span></div>
+      </div>
+      <div class="tool-group">
+        <h4>Field Data Collection</h4>
+        <div class="tool-list"><span>Kobo Toolbox</span><span>ODK</span><span>Survey123</span><span>QField</span></div>
+      </div>
+      <div class="tool-group">
+        <h4>Dashboards &amp; Reporting</h4>
+        <div class="tool-list"><span>Power BI</span><span>Tableau</span><span>Matplotlib / Seaborn</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num mono">03</span><h2>Experience</h2></div>
+    <div class="tl">
+      <div class="tl-item">
+        <span class="yr mono">Mar – Aug 2026</span>
+        <h4>GIS Technical Expert</h4>
+        <div class="org">Geospatial Research International — MSP Atlas &amp; Njoro Kubwa GIS component</div>
+      </div>
+      <div class="tl-item">
+        <span class="yr mono">Jan 2021 – Present</span>
+        <h4>Spatial Data Scientist, Environmental Monitoring, Verification &amp; Reporting</h4>
+        <div class="org">Shamba — MRV systems for land restoration, climate risk and land productivity</div>
+      </div>
+      <div class="tl-item">
+        <span class="yr mono">Feb 2018 – Dec 2020</span>
+        <h4>Geospatial Analyst, GIS Platform Software Development</h4>
+        <div class="org">Ababu Apps — mobile, desktop and web GIS platforms for development &amp; conservation programmes</div>
+      </div>
+      <div class="tl-item">
+        <span class="yr mono">Jun 2014 – Aug 2017</span>
+        <h4>GIS &amp; Remote Sensing Analyst</h4>
+        <div class="org">RCMRD — national LULC mapping, GHG estimation inputs, capacity-building across 10+ member states</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num mono">04</span><h2>Get in touch</h2></div>
+    <p class="sec-intro">Open to consultancy engagements and roles across environmental MRV, marine &amp; coastal spatial planning, and water-sector GIS — in East Africa or remote.</p>
+    <div class="contact-grid">
+      <a href="mailto:ericmulama@gmail.com">ericmulama@gmail.com</a>
+      <a href="tel:+254728418537">+254 728 418 537</a>
+      <a href="https://www.linkedin.com/in/erickmulama" target="_blank" rel="noopener">linkedin.com/in/erickmulama</a>
+    </div>
+    <div class="fine">Nairobi, Kenya · References and full CV available on request</div>
+  </div>
+</footer>
+</body>
+</html>
