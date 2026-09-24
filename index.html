@@ -410,6 +410,10 @@
         <span class="tag">MapLibre GL</span><span class="tag">React 19</span><span class="tag">Redis</span>
       </div>
       <div class="plate-body">
+        <figure class="ref-figure">
+          <img src="images/fleetpulse-live-map.jpg" alt="FleetPulse live fleet tracking dashboard showing real-time vehicle position clusters and a latency chart along a Tanzania trunk route from Morogoro to Dar es Salaam">
+          <figcaption>Live fleet map, Tanzania trunk route<br>51 vehicles tracked · MapLibre GL frontend<br>Real-time position clustering &amp; latency monitoring</figcaption>
+        </figure>
         <p>FleetPulse is a fleet and logistics platform I'm building from scratch, the whole system this time, not just the GIS layer on top of someone else's product. It's where the geospatial work I do for clients meets the full-stack engineering side: a multi-tenant backend, live GPS telematics, and the mapping and dashboards that turn a moving fleet into something a manager can actually see and act on.</p>
         <p>Each company's fleet data is isolated twice over: once in the application layer, and again with PostgreSQL row-level security policies at the database itself, so one tenant's vehicles are never reachable from another's session, even by a query that tries to go around the app. Geofences are stored as real PostGIS polygons rather than approximations. Incoming GPS pings get deduplicated, resolved to the right vehicle even when a tracker was reassigned partway through, and streamed live to a MapLibre tracking map on the dashboard.</p>
         <ul>
