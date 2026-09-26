@@ -136,42 +136,50 @@
 
 <article>
   <div class="wrap">
-    <p>When a single system serves multiple organizations from one shared database, this is known as multi-tenancy. In that situation each organization's data must remain completely inaccessible to every other organization. This requirement sounds straightforward, but reliably enforcing it takes more than a single safeguard.</p>
+    <p>When a single system serves multiple organizations from one shared database it is known as multi-tenancy, in such a situation each organization's data must remain completely inaccessible to every other organization. This requirement appears straightforward, but reliably enforcing it requires more than a single safeguard.</p>
 
     <h2>Primary safeguard: application-level filtering</h2>
     <p>The conventional method restricts data access within the application layer. Every query and every request is scoped to a specific organization, so that only records belonging to that organization are returned.</p>
-    <p>This method works well under normal conditions, but it has a structural weakness: its correctness depends entirely on every developer applying the filter correctly, in every query, in every feature, indefinitely. An omitted filter, introduced by a new feature, an administrative tool, or a rushed change, can expose one organization's data to another.</p>
+    <p>This method is effective under normal conditions but has a structural weakness: its correctness depends entirely on every developer applying the filter correctly, in every query, in every feature, indefinitely. An omitted filter, introduced by a new feature, an administrative tool, or a rushed change, can expose one organization's data to another.</p>
 
     <h2>Secondary safeguard: database-level enforcement</h2>
     <p>A more robust method enforces the same restriction at the database layer itself. Each database connection is assigned an identifier for the organization it represents, and the database automatically excludes any data outside that scope, regardless of the query issued by the application.</p>
     <p>Under this configuration, even a query that omits the filter entirely cannot return data belonging to another organization. With two independent enforcement layers in place, a single implementation error in the application code is no longer sufficient to cause a data exposure.</p>
 
     <div class="diagram">
-      <svg viewBox="0 0 640 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="diagramTitle">
-        <title id="diagramTitle">Defense in depth: a request passing through two independent checks</title>
+      <svg viewBox="0 0 720 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="diagramTitle">
+        <title id="diagramTitle">A missed filter at one layer does not leak data</title>
 
-        <text x="320" y="26" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="13" letter-spacing="0.06em" style="fill:var(--ink-soft)">INCOMING REQUEST &middot; ORG A</text>
-        <line x1="320" y1="36" x2="320" y2="58" stroke-width="2" style="stroke:var(--ink-soft)"></line>
-        <polygon points="320,64 314,54 326,54" style="fill:var(--ink-soft)"></polygon>
+        <text x="360" y="22" text-anchor="middle" font-family="IBM Plex Sans, sans-serif" font-size="13.5" font-weight="600" style="fill:var(--ink)">A missed filter at one layer does not leak data</text>
 
-        <rect x="70" y="68" width="500" height="64" rx="6" style="fill:none;stroke:var(--ocean);stroke-width:2"></rect>
-        <text x="320" y="94" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="13" font-weight="600" style="fill:var(--ocean)">LAYER 1 &middot; APPLICATION FILTER</text>
-        <text x="320" y="115" text-anchor="middle" font-family="IBM Plex Sans, sans-serif" font-size="12" style="fill:var(--ink-soft)">every query scoped to org A in code</text>
+        <rect x="9" y="70" width="156" height="60" rx="6" style="fill:none;stroke:var(--ink-soft);stroke-width:1.5"></rect>
+        <text x="87" y="96" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" font-weight="700" letter-spacing="0.02em" style="fill:var(--ink)">CLIENT REQUEST</text>
+        <text x="87" y="114" text-anchor="middle" font-family="IBM Plex Sans, sans-serif" font-size="10.5" style="fill:var(--ink-soft)">scoped to Org A</text>
 
-        <line x1="320" y1="132" x2="320" y2="154" stroke-width="2" style="stroke:var(--ink-soft)"></line>
-        <polygon points="320,160 314,150 326,150" style="fill:var(--ink-soft)"></polygon>
+        <line x1="165" y1="100" x2="187" y2="100" stroke-width="1.5" style="stroke:var(--ink-soft)"></line>
+        <polygon points="191,100 183,95 183,105" style="fill:var(--ink-soft)"></polygon>
 
-        <rect x="70" y="164" width="500" height="64" rx="6" style="fill:none;stroke:var(--mangrove);stroke-width:2"></rect>
-        <text x="320" y="190" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="13" font-weight="600" style="fill:var(--mangrove)">LAYER 2 &middot; DATABASE ROW-LEVEL SECURITY</text>
-        <text x="320" y="211" text-anchor="middle" font-family="IBM Plex Sans, sans-serif" font-size="12" style="fill:var(--ink-soft)">org A scope enforced on every connection</text>
+        <rect x="191" y="70" width="156" height="60" rx="6" style="fill:none;stroke:var(--ink-soft);stroke-width:1.5"></rect>
+        <text x="269" y="96" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" font-weight="700" letter-spacing="0.02em" style="fill:var(--ink)">APPLICATION FILTER</text>
+        <text x="269" y="114" text-anchor="middle" font-family="IBM Plex Sans, sans-serif" font-size="10.5" style="fill:var(--ink-soft)">in application code</text>
 
-        <line x1="320" y1="228" x2="320" y2="250" stroke-width="2" style="stroke:var(--ink-soft)"></line>
-        <polygon points="320,256 314,246 326,246" style="fill:var(--ink-soft)"></polygon>
+        <line x1="347" y1="100" x2="369" y2="100" stroke-width="1.5" style="stroke:var(--ink-soft)"></line>
+        <polygon points="373,100 365,95 365,105" style="fill:var(--ink-soft)"></polygon>
 
-        <text x="320" y="278" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="13" style="fill:var(--ink-soft)">ORG A DATA ONLY</text>
+        <rect x="373" y="70" width="156" height="60" rx="6" style="fill:none;stroke:var(--ink-soft);stroke-width:1.5"></rect>
+        <text x="451" y="96" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" font-weight="700" letter-spacing="0.02em" style="fill:var(--ink)">DATABASE ENFORCEMENT</text>
+        <text x="451" y="114" text-anchor="middle" font-family="IBM Plex Sans, sans-serif" font-size="10.5" style="fill:var(--ink-soft)">on every query</text>
 
-        <path d="M 555 100 C 610 100, 610 196, 555 196" fill="none" stroke-dasharray="4 4" stroke-width="1.6" style="stroke:var(--coral)"></path>
-        <text x="616" y="152" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" style="fill:var(--coral)" transform="rotate(90 616 152)">if layer 1 is skipped</text>
+        <line x1="529" y1="100" x2="551" y2="100" stroke-width="1.5" style="stroke:var(--ink-soft)"></line>
+        <polygon points="555,100 547,95 547,105" style="fill:var(--ink-soft)"></polygon>
+
+        <rect x="555" y="70" width="156" height="60" rx="6" style="fill:none;stroke:var(--ocean);stroke-width:2.5"></rect>
+        <text x="633" y="96" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" font-weight="700" letter-spacing="0.02em" style="fill:var(--ocean)">RESPONSE</text>
+        <text x="633" y="114" text-anchor="middle" font-family="IBM Plex Sans, sans-serif" font-size="10.5" style="fill:var(--ink-soft)">Org A records only</text>
+
+        <path d="M 87 130 L 87 172 L 451 172 L 451 134" fill="none" stroke-dasharray="4 4" stroke-width="1.5" style="stroke:var(--coral)"></path>
+        <polygon points="451,130 445,140 457,140" style="fill:var(--coral)"></polygon>
+        <text x="269" y="192" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" style="fill:var(--coral)">filter omitted (bug)</text>
       </svg>
       <p class="diagram-caption">Defense in depth: two independent checks. A request missing the application filter is still constrained by the database's own enforcement, so no single omission is sufficient to expose another organization's data.</p>
     </div>
@@ -179,7 +187,7 @@
     <h2>Application to real-time spatial data</h2>
     <p>The same isolation requirement applies to systems that process continuous location data, such as platforms tracking vehicle fleets across multiple organizations. Each vehicle transmits a steady stream of position reports, and this stream must remain isolated by organization using the same two-layer approach.</p>
     <p>A second, independent problem exists alongside isolation: raw position data must be converted into meaningful units, such as trips, stops, or distance travelled. Two closely spaced position reports do not, by themselves, indicate whether a vehicle halted briefly or remained parked for an extended period, so this conversion requires additional logic beyond filtering alone.</p>
-    <p>Addressing both requirements at once, isolating the data by organization while deriving meaningful units from a continuous signal, is what makes systems like this difficult to get right.</p>
+    <p>Addressing both requirements concurrently, isolating the data by organization while deriving meaningful units from a continuous signal, is what makes systems of this kind difficult to implement correctly.</p>
 
     <h2>Why redundancy matters</h2>
     <p>A single safeguard implies a single point of failure: one omission produces one exposure. Two independent safeguards, one at the application layer and one at the database layer, remove that dependency. The second layer functions as a control that does not rely on any individual implementation being correct.</p>
