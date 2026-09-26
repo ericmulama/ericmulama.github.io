@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Isolating Client Data in a Shared Database System &middot; Erick Mulama Shituku</title>
+<meta name="description" content="Why application-level filtering alone is not enough to keep one tenant's data away from another's in a multi-tenant system, and how database-level row security closes the gap.">
+<meta name="author" content="Erick Mulama Shituku">
+<meta property="og:title" content="Isolating Client Data in a Shared Database System">
+<meta property="og:description" content="A two-layer approach to multi-tenant data isolation, drawn from building FleetPulse's multi-tenant fleet tracking platform.">
+<meta property="og:type" content="article">
+<meta name="theme-color" content="#0E3A4C">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='16' fill='%230E3A4C'/%3E%3Ctext x='50' y='68' font-size='58' text-anchor='middle' fill='%23F4F6F2' font-family='Georgia,serif'%3EM%3C/text%3E%3C/svg%3E">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+  :root{
+    --paper:#F4F6F2;
+    --paper-raised:#ECEFE9;
+    --ink:#14211F;
+    --ink-soft:#3E4E49;
+    --ocean:#0E3A4C;
+    --ocean-soft:#3E6478;
+    --coral:#B84B29;
+    --mangrove:#3F6B52;
+    --sand:#D9D0B4;
+    --line: rgba(20,33,31,0.14);
+    --shadow: 0 1px 2px rgba(14,58,76,0.06);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#101A1B;
+      --paper-raised:#16211F;
+      --ink:#E7EEEA;
+      --ink-soft:#AEC0BA;
+      --ocean:#7FB9CE;
+      --ocean-soft:#5D8FA0;
+      --coral:#E08A63;
+      --mangrove:#8FC29F;
+      --sand:#4A4D3C;
+      --line: rgba(231,238,234,0.16);
+      --shadow: 0 1px 2px rgba(0,0,0,0.3);
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#101A1B;
+    --paper-raised:#16211F;
+    --ink:#E7EEEA;
+    --ink-soft:#AEC0BA;
+    --ocean:#7FB9CE;
+    --ocean-soft:#5D8FA0;
+    --coral:#E08A63;
+    --mangrove:#8FC29F;
+    --sand:#4A4D3C;
+    --line: rgba(231,238,234,0.16);
+    --shadow: 0 1px 2px rgba(0,0,0,0.3);
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'IBM Plex Sans',system-ui,sans-serif;
+    line-height:1.6;
+  }
+  .wrap{max-width:720px;margin:0 auto;padding:0 28px;}
+  h1,h2,h3{font-family:'Playfair Display',Georgia,serif;font-weight:600;text-wrap:balance;margin:0;}
+  .mono{font-family:'IBM Plex Mono',ui-monospace,monospace;}
+  a{color:var(--ocean);}
+  img{display:block;width:100%;height:auto;border-radius:2px;}
+
+  nav{
+    position:sticky;top:0;z-index:20;
+    background:color-mix(in srgb, var(--paper) 88%, transparent);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  nav .wrap{max-width:920px;display:flex;align-items:center;justify-content:space-between;padding:14px 28px;flex-wrap:wrap;gap:6px 18px;}
+  .brand{font-family:'Playfair Display',serif;font-weight:600;font-size:1.05rem;letter-spacing:0.01em;white-space:nowrap;text-decoration:none;color:var(--ink);}
+  .navlinks{display:flex;gap:22px;font-size:0.86rem;}
+  .navlinks a{color:var(--ink-soft);text-decoration:none;}
+  .navlinks a:hover{color:var(--ocean);}
+
+  .article-header{padding:56px 0 32px;border-bottom:1px solid var(--line);}
+  .back-link{
+    display:inline-flex;align-items:center;gap:6px;font-family:'IBM Plex Mono',monospace;font-size:0.76rem;
+    color:var(--ink-soft);text-decoration:none;margin-bottom:26px;
+  }
+  .back-link:hover{color:var(--ocean);}
+  .article-header h1{font-size:clamp(1.7rem,4vw,2.35rem);color:var(--ocean);line-height:1.2;max-width:20ch;}
+  .article-meta{
+    font-family:'IBM Plex Mono',monospace;font-size:0.78rem;color:var(--mangrove);
+    text-transform:uppercase;letter-spacing:0.06em;margin-top:18px;
+  }
+
+  article{padding:44px 0 8px;}
+  article p{max-width:66ch;margin:0 0 20px;font-size:1.02rem;}
+  article h2{font-size:1.3rem;color:var(--ocean);margin:40px 0 16px;}
+  article h2:first-child{margin-top:0;}
+
+  .diagram{
+    margin:8px 0 34px;padding:26px 22px 22px;
+    background:var(--paper-raised);border:1px solid var(--line);border-radius:6px;
+  }
+  .diagram svg{display:block;width:100%;height:auto;}
+  .diagram-caption{
+    font-family:'IBM Plex Mono',monospace;font-size:0.72rem;color:var(--ink-soft);
+    text-align:center;margin-top:14px;line-height:1.5;
+  }
+
+  footer{padding:48px 0 72px;border-top:1px solid var(--line);margin-top:24px;}
+  .contact-grid{display:flex;flex-wrap:wrap;gap:28px;}
+  .contact-grid a{font-size:0.9rem;text-decoration:none;border-bottom:1px solid var(--line);padding-bottom:2px;}
+  .fine{margin-top:28px;font-size:0.74rem;color:var(--ink-soft);font-family:'IBM Plex Mono',monospace;}
+</style>
+</head>
+<body>
+<nav>
+  <div class="wrap">
+    <a class="brand" href="../index.html">Erick Mulama Shituku</a>
+    <div class="navlinks">
+      <a href="../index.html#work">Work</a>
+      <a href="../index.html#articles">Articles</a>
+      <a href="../index.html#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="article-header">
+  <div class="wrap">
+    <a class="back-link" href="../index.html#articles">&larr; Back to articles</a>
+    <h1>Isolating Client Data in a Shared Database System</h1>
+    <div class="article-meta">Sep 25, 2026 &middot; Erick Mulama Shituku</div>
+  </div>
+</header>
+
+<article>
+  <div class="wrap">
+    <p>When a single system serves multiple organizations from one shared database, this is known as multi-tenancy. In that situation each organization's data must remain completely inaccessible to every other organization. This requirement sounds straightforward, but reliably enforcing it takes more than a single safeguard.</p>
+
+    <h2>Primary safeguard: application-level filtering</h2>
+    <p>The conventional method restricts data access within the application layer. Every query and every request is scoped to a specific organization, so that only records belonging to that organization are returned.</p>
+    <p>This method works well under normal conditions, but it has a structural weakness: its correctness depends entirely on every developer applying the filter correctly, in every query, in every feature, indefinitely. An omitted filter, introduced by a new feature, an administrative tool, or a rushed change, can expose one organization's data to another.</p>
+
+    <h2>Secondary safeguard: database-level enforcement</h2>
+    <p>A more robust method enforces the same restriction at the database layer itself. Each database connection is assigned an identifier for the organization it represents, and the database automatically excludes any data outside that scope, regardless of the query issued by the application.</p>
+    <p>Under this configuration, even a query that omits the filter entirely cannot return data belonging to another organization. With two independent enforcement layers in place, a single implementation error in the application code is no longer sufficient to cause a data exposure.</p>
+
+    <div class="diagram">
+      <svg viewBox="0 0 640 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="diagramTitle">
+        <title id="diagramTitle">Defense in depth: a request passing through two independent checks</title>
+
+        <text x="320" y="26" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="13" letter-spacing="0.06em" style="fill:var(--ink-soft)">INCOMING REQUEST &middot; ORG A</text>
+        <line x1="320" y1="36" x2="320" y2="58" stroke-width="2" style="stroke:var(--ink-soft)"></line>
+        <polygon points="320,64 314,54 326,54" style="fill:var(--ink-soft)"></polygon>
+
+        <rect x="70" y="68" width="500" height="64" rx="6" style="fill:none;stroke:var(--ocean);stroke-width:2"></rect>
+        <text x="320" y="94" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="13" font-weight="600" style="fill:var(--ocean)">LAYER 1 &middot; APPLICATION FILTER</text>
+        <text x="320" y="115" text-anchor="middle" font-family="IBM Plex Sans, sans-serif" font-size="12" style="fill:var(--ink-soft)">every query scoped to org A in code</text>
+
+        <line x1="320" y1="132" x2="320" y2="154" stroke-width="2" style="stroke:var(--ink-soft)"></line>
+        <polygon points="320,160 314,150 326,150" style="fill:var(--ink-soft)"></polygon>
+
+        <rect x="70" y="164" width="500" height="64" rx="6" style="fill:none;stroke:var(--mangrove);stroke-width:2"></rect>
+        <text x="320" y="190" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="13" font-weight="600" style="fill:var(--mangrove)">LAYER 2 &middot; DATABASE ROW-LEVEL SECURITY</text>
+        <text x="320" y="211" text-anchor="middle" font-family="IBM Plex Sans, sans-serif" font-size="12" style="fill:var(--ink-soft)">org A scope enforced on every connection</text>
+
+        <line x1="320" y1="228" x2="320" y2="250" stroke-width="2" style="stroke:var(--ink-soft)"></line>
+        <polygon points="320,256 314,246 326,246" style="fill:var(--ink-soft)"></polygon>
+
+        <text x="320" y="278" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="13" style="fill:var(--ink-soft)">ORG A DATA ONLY</text>
+
+        <path d="M 555 100 C 610 100, 610 196, 555 196" fill="none" stroke-dasharray="4 4" stroke-width="1.6" style="stroke:var(--coral)"></path>
+        <text x="616" y="152" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" style="fill:var(--coral)" transform="rotate(90 616 152)">if layer 1 is skipped</text>
+      </svg>
+      <p class="diagram-caption">Defense in depth: two independent checks. A request missing the application filter is still constrained by the database's own enforcement, so no single omission is sufficient to expose another organization's data.</p>
+    </div>
+
+    <h2>Application to real-time spatial data</h2>
+    <p>The same isolation requirement applies to systems that process continuous location data, such as platforms tracking vehicle fleets across multiple organizations. Each vehicle transmits a steady stream of position reports, and this stream must remain isolated by organization using the same two-layer approach.</p>
+    <p>A second, independent problem exists alongside isolation: raw position data must be converted into meaningful units, such as trips, stops, or distance travelled. Two closely spaced position reports do not, by themselves, indicate whether a vehicle halted briefly or remained parked for an extended period, so this conversion requires additional logic beyond filtering alone.</p>
+    <p>Addressing both requirements at once, isolating the data by organization while deriving meaningful units from a continuous signal, is what makes systems like this difficult to get right.</p>
+
+    <h2>Why redundancy matters</h2>
+    <p>A single safeguard implies a single point of failure: one omission produces one exposure. Two independent safeguards, one at the application layer and one at the database layer, remove that dependency. The second layer functions as a control that does not rely on any individual implementation being correct.</p>
+    <p>This redundancy operates automatically, without requiring developers to remember to apply the correct check in every new piece of code.</p>
+
+    <h2>Conclusion</h2>
+    <p>This two-layer approach applies to any system serving multiple clients from a shared data store. Data isolation should not depend on consistent, error-free implementation across an entire codebase. It should instead be enforced structurally, at the level of the system itself, so that it holds even when an individual implementation does not.</p>
+  </div>
+</article>
+
+<footer>
+  <div class="wrap">
+    <div class="contact-grid">
+      <a href="mailto:ericmulama@gmail.com">ericmulama@gmail.com</a>
+      <a href="tel:+254728418537">+254 728 418 537</a>
+      <a href="https://www.linkedin.com/in/erickmulama" target="_blank" rel="noopener">linkedin.com/in/erickmulama</a>
+    </div>
+    <div class="fine">Nairobi, Kenya &middot; <a href="../index.html">Back to portfolio</a></div>
+  </div>
+</footer>
+</body>
+</html>
