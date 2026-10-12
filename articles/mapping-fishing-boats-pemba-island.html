@@ -3,32 +3,106 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mapping Fishing Boats on Pemba Island — Erick Mulama Shituku</title>
-<meta name="description" content="A Pemba Island fishing boat mapping project: screening drone imagery, testing visible boat coverage, and planning MapSwipe and GeoAI annotation.">
+<title>Mapping Fishing Boats on Pemba Island: From Drone Imagery to AI-Ready Geospatial Data — Erick Mulama Shituku</title>
+<meta name="description" content="A first-person account of Pemba Island aerial imagery feasibility and a planned MapSwipe and GeoAI annotation workflow.">
 <meta name="author" content="Erick Mulama Shituku">
+<meta property="og:image" content="https://ericmulama.github.io/images/pemba-article-01.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{--paper:#F4F6F2;--raised:#ECEFE9;--ink:#14211F;--soft:#3E4E49;--ocean:#0E3A4C;--coral:#B84B29;--green:#3F6B52;--line:rgba(20,33,31,.14)}
 @media(prefers-color-scheme:dark){:root{--paper:#101A1B;--raised:#16211F;--ink:#E7EEEA;--soft:#AEC0BA;--ocean:#7FB9CE;--coral:#E08A63;--green:#8FC29F;--line:rgba(231,238,234,.16)}}
 *{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.72 'IBM Plex Sans',sans-serif}.wrap{max-width:850px;margin:0 auto;padding:0 26px}nav{border-bottom:1px solid var(--line);padding:16px 0}.brand{font:600 1rem 'Playfair Display',serif;color:var(--ink);text-decoration:none}.intro{padding:54px 0 34px;border-bottom:1px solid var(--line)}.back,.meta,.eyebrow,figcaption{font: .72rem 'IBM Plex Mono',monospace;letter-spacing:.04em}.back{color:var(--green);text-decoration:none}.meta{display:block;color:var(--green);text-transform:uppercase;margin:30px 0 12px}.eyebrow{color:var(--soft);margin:18px 0 0}h1,h2{font-family:'Playfair Display',Georgia,serif;line-height:1.2}h1{font-size:clamp(2.1rem,5vw,3.3rem);color:var(--ocean);max-width:19ch;margin:0}h2{font-size:1.65rem;color:var(--ocean);margin:46px 0 14px}.dek{font-size:1.13rem;color:var(--soft);max-width:58ch;margin:18px 0 0}main{padding:34px 0 70px}p{max-width:70ch;margin:0 0 18px}figure{margin:28px 0;background:var(--raised);border:1px solid var(--line);padding:8px;border-radius:4px}figure img{display:block;width:100%;height:auto}figcaption{color:var(--soft);padding:10px 4px 2px;line-height:1.5}footer{border-top:1px solid var(--line);padding:24px 0 40px;color:var(--soft);font-size:.82rem}footer a{color:var(--ocean)}
+
+.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin:28px 0}.metrics div{background:var(--raised);padding:18px}.metrics strong{display:block;font:600 1.3rem 'IBM Plex Mono',monospace;color:var(--coral)}.metrics span{font-size:.76rem;color:var(--soft)}
+.gallery{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:28px 0 8px}.gallery img{display:block;width:100%;height:155px;object-fit:cover;border-radius:3px}.gallery a{display:block;background:var(--raised)}.gallery a:first-child{grid-column:span 2;grid-row:span 2}.gallery a:first-child img{height:318px}.gallery-caption{font:.72rem/1.5 'IBM Plex Mono',monospace;color:var(--soft);margin:0 0 28px}.diagram img{width:100%;height:auto;object-fit:contain;background:#151515}
+.phase-table{width:100%;border-collapse:collapse;margin:26px 0;font-size:.9rem}.phase-table th,.phase-table td{text-align:left;border-bottom:1px solid var(--line);padding:11px 8px;vertical-align:top}.phase-table th{color:var(--ocean);font-weight:600}.note{background:var(--raised);border-left:3px solid var(--coral);padding:16px 20px;margin:28px 0}.note p:last-child{margin:0}ul{max-width:70ch;padding-left:1.3em;margin:0 0 20px}li{margin-bottom:7px}.byline{color:var(--soft);font-size:.85rem}@media(max-width:650px){.metrics{grid-template-columns:1fr 1fr}.gallery{grid-template-columns:repeat(2,minmax(0,1fr))}.gallery img{height:150px}.gallery a:first-child img{height:308px}}@media(max-width:420px){.metrics{grid-template-columns:1fr}.gallery img{height:120px}.gallery a:first-child img{height:248px}}
 </style>
 </head>
 <body>
 <nav><div class="wrap"><a class="brand" href="../index.html">Erick Mulama Shituku</a></div></nav>
-<header class="intro"><div class="wrap"><a class="back" href="../index.html#articles">← All articles</a><span class="meta">Oct 12, 2026 · Aerial imagery · Ongoing project</span><h1>Mapping Fishing Boats on Pemba Island</h1><p class="dek">How a coastal imagery review is shaping a proposed MapSwipe workflow and a future GeoAI training dataset.</p></div></header>
+<header class="intro"><div class="wrap"><a class="back" href="../index.html#articles">← All articles</a><span class="meta">GIS &amp; Remote Sensing · Humanitarian Mapping · October 2026</span><h1>Mapping Fishing Boats on Pemba Island: From Drone Imagery to AI-Ready Geospatial Data</h1><p class="byline">By Erick Mulama Shituku</p></div></header>
 <main class="wrap">
-<p>Small fishing boats can be easy to miss in a broad coastal map. In high-resolution aerial imagery, they become visible one by one: pulled up on shore, moored near landing sites, or afloat close to the island. The challenge is turning those visible objects into trustworthy, reusable geographic data.</p>
-<p>On Pemba Island, I am leading the geospatial planning for a fishing boat mapping project using drone imagery. The work is ongoing. So far, the central task has been to establish whether the available imagery contains enough discernible boats to support a volunteer mapping exercise and, later, a carefully validated dataset for GeoAI.</p>
-<h2>First, establish what the imagery can support</h2>
-<p>The local collection comprises 116 georeferenced GeoTIFF images. I screened their footprints against a coastline reference, then used QGIS to prioritize coastal images for visual review. Coastline proximity was only a screening clue: some apparently coastal image footprints proved to be inland when inspected.</p>
-<p>Across 25 reviewed images, visual counts recorded 1,032 boat sightings. Most reviewed footprints did not overlap. One image overlapped a previously counted image containing 13 boats; even if all 13 were counted twice, the conservative minimum is 1,019 distinct visible boats. That clears the project's 1,000-boat visibility target. The counts are visual observations, not yet independently validated object labels or a completed training set.</p>
-<h2>Design MapSwipe around its actual output</h2>
-<p>The proposed next stage is a MapSwipe Locate Objects project. Volunteers would inspect small image tiles and indicate whether each contains no boats, one boat, or multiple boats. That can help focus attention across a large coastal area and bring more people into the mapping work.</p>
-<p>MapSwipe's tile responses are not precise boat bounding boxes or outlines. To build an object-detection dataset, the team still needs an agreed boat-level annotation format, a process for resolving uncertain cases, and quality checks. A raster tile-serving test and an agreed area of interest are also needed before a MapSwipe campaign can begin.</p>
-<h2>From volunteer mapping to GeoAI</h2>
-<p>With validated boat-level labels, imagery and annotations could support GeoAI models that detect fishing boats at scale. That is the intended direction, not a result already delivered. Model training would require careful dataset packaging, attention to duplicate imagery, and evaluation against held-out areas so performance reflects real coastal conditions.</p>
-<p>As project lead, my role spans imagery sourcing and preparation, the mapping workflow, coordination with collaborators, validation decisions, and eventual documentation and handover. The completed feasibility review gives the team a concrete starting point: visible boat volume is sufficient in the reviewed Pemba imagery. The remaining work is to turn that visibility into reliable labels and a reproducible mapping process.</p>
+<div class="gallery" aria-label="Coastal and fishing boat image gallery">
+<a href="../images/pemba-article-01.jpg"><img src="../images/pemba-article-01.jpg" alt="Traditional sailboats beside a coastal town" fetchpriority="high"></a>
+<a href="../images/pemba-article-02.jpg"><img src="../images/pemba-article-02.jpg" alt="Fishing boats gathered along a sheltered beach" loading="lazy"></a>
+<a href="../images/pemba-article-03.jpg"><img src="../images/pemba-article-03.jpg" alt="Small boats viewed from above near a sandy shoreline" loading="lazy"></a>
+<a href="../images/pemba-article-04.jpg"><img src="../images/pemba-article-04.jpg" alt="Aerial view of a waterfront town and boat landing" loading="lazy"></a>
+<a href="../images/pemba-article-05.jpg"><img src="../images/pemba-article-05.jpg" alt="Outrigger boats in shallow coastal water" loading="lazy"></a>
+<a href="../images/pemba-article-06.jpg"><img src="../images/pemba-article-06.jpg" alt="Aerial view of a harbour and moored vessels" loading="lazy"></a>
+<a href="../images/pemba-article-07.jpg"><img src="../images/pemba-article-07.jpg" alt="Boat in turquoise water beside a beach" loading="lazy"></a>
+<a href="../images/pemba-article-08.jpg"><img src="../images/pemba-article-08.jpg" alt="Wooden boat above a shallow coastal reef" loading="lazy"></a>
+</div>
+<p class="gallery-caption">Illustrative coastal and fishing imagery supplied for this article. These photographs are not the OpenAerialMap source tiles reviewed for the project.</p>
+<h2>Mapping the small details that matter</h2>
+<p>Fishing boats are a familiar sight along the coast of Pemba Island, Tanzania. Traditional wooden dhows, outrigger canoes and motorised skiffs support fishing activities across coastal communities. Yet identifying these vessels consistently in openly accessible geospatial datasets remains a technical challenge.</p>
+<p>High-resolution aerial photography provides an opportunity to address this gap. At sufficient spatial resolution, individual boats can be distinguished from beaches, shorelines, vegetation and surrounding infrastructure.</p>
+<p>My current project, developed in the context of the Humanitarian OpenStreetMap Team (HOT) Map Your City with fAIr initiative, explores how openly licensed drone imagery, volunteer-based annotation and geospatial data validation can be combined to produce a dataset suitable for artificial intelligence applications.</p>
+<p>The focus is on a practical question: How can we turn high-resolution aerial imagery into reliable, openly reusable annotations of small fishing vessels?</p>
+<p>The approach brings together remote sensing, GIS, MapSwipe and structured quality assurance.</p>
+<figure class="diagram"><img src="../images/pemba-geospatial-workflow.png" alt="Proposed workflow: aerial imagery acquisition, GIS project preparation, MapSwipe annotation, quality assurance, dataset preparation, and open publication" loading="lazy"><figcaption>Proposed geospatial data workflow from the original article visuals. The later stages remain planned.</figcaption></figure>
+<h2>Working with high-resolution aerial imagery</h2>
+<p>Aerial imagery is the foundation of the proposed workflow.</p>
+<p>During the initial feasibility assessment, I queried the OpenAerialMap catalogue to investigate the availability of drone imagery that could support detailed coastal feature identification.</p>
+<p>The assessment identified imagery from Pemba Island captured between 2016 and 2018, with an approximate ground sampling distance of 7 centimetres and a CC BY 4.0 licence.</p>
+<p>This level of spatial detail is promising for visually identifying individual boats, although actual detectability will depend on vessel size, image clarity, shadows, shoreline conditions and the quality of the source imagery.</p>
+<div class="metrics"><div><strong>~7 cm</strong><span>Reported imagery resolution</span></div><div><strong>2016–18</strong><span>Imagery acquisition period</span></div><div><strong>CC BY 4.0</strong><span>Reported imagery licence</span></div></div>
+<p class="byline">Imagery characteristics identified during the preliminary OpenAerialMap catalogue assessment.</p>
+<p>The next technical consideration is preparing imagery for annotation. This involves checking spatial coverage, confirming coordinate reference systems, examining image quality and defining suitable areas of interest.</p>
+<p>For coastal object mapping, these preparation steps are important because boats may appear in different contexts: pulled onto beaches, moored near landing sites or positioned close to other vessels.</p>
+<p>A useful annotation workflow must account for these variations while maintaining consistency across the imagery.</p>
+<div class="gallery" aria-label="Additional illustrative coastal image gallery">
+<a href="../images/pemba-article-09.jpg"><img src="../images/pemba-article-09.jpg" alt="Aerial view of a sandbar and a small wooden boat" loading="lazy"></a>
+<a href="../images/pemba-article-10.jpg"><img src="../images/pemba-article-10.jpg" alt="Aerial view of a forested coast and reef" loading="lazy"></a>
+<a href="../images/pemba-article-11.jpg"><img src="../images/pemba-article-11.jpg" alt="Small boats beside a turquoise cove" loading="lazy"></a>
+<a href="../images/pemba-article-12.jpg"><img src="../images/pemba-article-12.jpg" alt="Aerial view of nearshore features and a boat" loading="lazy"></a>
+<a href="../images/pemba-article-13.jpg"><img src="../images/pemba-article-13.jpg" alt="Aerial view across a coastal reef" loading="lazy"></a>
+<a href="../images/pemba-article-14.jpg"><img src="../images/pemba-article-14.jpg" alt="Two boats in shallow water near a beach" loading="lazy"></a>
+<a href="../images/pemba-article-15.jpg"><img src="../images/pemba-article-15.jpg" alt="Fishing boats viewed vertically in shallow water" loading="lazy"></a>
+</div>
+<p class="gallery-caption">Additional illustrative coastal views supplied for the article; they show varied contexts in which boats may appear.</p>
+<h2>From imagery to annotations with MapSwipe</h2>
+<p>The project proposes using MapSwipe to organize collaborative image annotation.</p>
+<p>MapSwipe enables volunteers to contribute to humanitarian mapping by interpreting imagery through accessible mapping tasks. For this project, the intended approach is a Locate Objects workflow, in which contributors identify image cells containing fishing boats.</p>
+<p>Instead of asking volunteers to digitize every vessel as a polygon, the initial annotation task focuses on identifying the presence and approximate location of target objects.</p>
+<p>The proposed workflow is straightforward:</p>
+<figure class="diagram"><img src="../images/pemba-mapswipe-steps.png" alt="Six planned steps: prepare imagery, configure MapSwipe, train contributors, collect annotations, validate results, and prepare the dataset" loading="lazy"><figcaption>MapSwipe annotation sequence from the original article visual. These steps are proposed, not completed outputs.</figcaption></figure>
+<p>The target is to collect annotations covering at least 1,000 fishing boats, subject to the number of vessels visible within the selected imagery.</p>
+<div class="note"><p>The completed imagery review recorded 1,032 sightings across 25 images. A conservative adjustment for overlapping footprints gives at least 1,019 distinct visible boats. These are visual counts, not completed boat-level annotations.</p></div>
+<p>A key part of the methodology is covering the entire defined area of interest, rather than stopping once a sufficient number of positive samples has been collected. This can help preserve information about areas where no boats are identified.</p>
+<h2>Why annotation quality matters</h2>
+<p>The usefulness of an AI training dataset depends heavily on the reliability of its labels.</p>
+<p>In aerial imagery, small boats can be difficult to distinguish from other coastal features. Shadows, partially obscured vessels, clustered boats and differences in image appearance can introduce uncertainty.</p>
+<p>The proposed quality-assurance process therefore includes secondary review of volunteer annotations and closer inspection of tiles where contributors disagree.</p>
+<p>For this project, three aspects of quality are particularly important:</p>
+<ul><li><strong>Consistency:</strong> Applying the same interpretation rules across contributors and image tiles.</li><li><strong>Completeness:</strong> Ensuring that all imagery within the defined area of interest is reviewed.</li><li><strong>Traceability:</strong> Maintaining clear documentation of the imagery, annotation process and validation decisions.</li></ul>
+<p>There is also an important distinction between MapSwipe localization labels and object-detection training annotations. Identifying a cell containing a boat does not necessarily provide a precise bounding box around the vessel.</p>
+<p>Depending on the intended model architecture, additional annotation refinement may be required before the dataset can be used for object detection.</p>
+<h2>Connecting community mapping with GeoAI</h2>
+<figure><img src="../images/pemba-article-16.jpg" alt="Example object detection interface marking boats with bounding boxes" loading="lazy"><figcaption>Illustrative boat-detection interface image supplied for the article (Keylabs AI). It is not an output from the Pemba Island project.</figcaption></figure>
+<p>One of the most interesting aspects of this project is the potential connection between community-generated annotations and machine learning.</p>
+<p>The proposed dataset could provide a starting point for training or evaluating models designed to identify small fishing vessels in high-resolution imagery.</p>
+<p>HOT's fAIr ecosystem provides a relevant context for exploring how locally generated training data can support AI-assisted mapping.</p>
+<p>However, developing a model is not the same as producing a reliable training dataset. The immediate priority is to establish a reproducible process for obtaining, annotating and validating the imagery.</p>
+<p>Any future model experiments would also need to consider the limitations of the data, including differences in vessel appearance, image acquisition conditions and the age of the imagery.</p>
+<p>Because the identified aerial photography dates from 2016–2018, the resulting annotations would describe vessels visible at the time of image capture, not a current inventory of active fishing boats.</p>
+<h2>Organizing the mapping work</h2>
+<p>Beyond the GIS and remote sensing components, the project requires coordination of imagery preparation, volunteer participation, validation and dataset documentation.</p>
+<p>The implementation approach is structured around four phases.</p>
+<table class="phase-table"><thead><tr><th>Phase</th><th>Main activities</th></tr></thead><tbody><tr><td>Imagery and GIS preparation</td><td>Verify imagery, define areas of interest and configure the annotation workflow</td></tr><tr><td>Volunteer mapathons</td><td>Train contributors and coordinate MapSwipe sessions</td></tr><tr><td>Validation and dataset preparation</td><td>Review annotations, resolve disagreements and prepare data outputs</td></tr><tr><td>Documentation and handover</td><td>Publish methodology, report results and prepare the dataset for reuse</td></tr></tbody></table>
+<p>The project proposal includes three to four volunteer mapping sessions and a final validation and publication stage.</p>
+<p>The goal is not only to generate labels, but to document a process that other geospatial practitioners can understand, evaluate and potentially reproduce.</p>
+<h2>What this project aims to contribute</h2>
+<p>The intended outputs include a completed MapSwipe annotation project, a validated geospatial dataset of fishing-boat observations and supporting documentation covering the methodology and quality-control procedures.</p>
+<p>If the workflow proves successful, it could provide useful experience for similar object-mapping tasks in other coastal environments.</p>
+<p>The potential value extends beyond identifying fishing boats. It lies in demonstrating how accessible annotation tools, openly licensed aerial photography and careful geospatial data management can support the development of locally relevant AI training datasets.</p>
+<h2>Looking ahead</h2>
+<p>The next stages of the project will focus on confirming usable imagery coverage, preparing the mapping area, establishing annotation guidelines and implementing the volunteer mapping workflow.</p>
+<p>As the work progresses, I plan to document the technical decisions, challenges and results, including how the annotations are validated and prepared for downstream use.</p>
+<p>For me, this project represents an intersection of several areas of geospatial practice: remote sensing, aerial image interpretation, participatory mapping, GIS data quality and emerging GeoAI applications.</p>
+<p>The central objective is to move from imagery to dependable geographic information through a transparent, reproducible workflow.</p>
+<p>That is where the practical value of geospatial technology begins.</p>
+<div class="note"><p>Erick Mulama Shituku is a GIS and Remote Sensing specialist with more than 11 years of professional experience across East Africa. His work spans marine spatial planning, environmental monitoring, geospatial analysis and the development of spatial information systems.</p></div>
 </main>
 <footer><div class="wrap"><a href="../index.html#articles">← Back to Articles</a></div></footer>
 </body>
