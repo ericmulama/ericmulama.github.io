@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mapping Fishing Boats on Pemba Island — Erick Mulama Shituku</title>
+<meta name="description" content="A Pemba Island fishing boat mapping project: screening drone imagery, testing visible boat coverage, and planning MapSwipe and GeoAI annotation.">
+<meta name="author" content="Erick Mulama Shituku">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#F4F6F2;--raised:#ECEFE9;--ink:#14211F;--soft:#3E4E49;--ocean:#0E3A4C;--coral:#B84B29;--green:#3F6B52;--line:rgba(20,33,31,.14)}
+@media(prefers-color-scheme:dark){:root{--paper:#101A1B;--raised:#16211F;--ink:#E7EEEA;--soft:#AEC0BA;--ocean:#7FB9CE;--coral:#E08A63;--green:#8FC29F;--line:rgba(231,238,234,.16)}}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.72 'IBM Plex Sans',sans-serif}.wrap{max-width:850px;margin:0 auto;padding:0 26px}nav{border-bottom:1px solid var(--line);padding:16px 0}.brand{font:600 1rem 'Playfair Display',serif;color:var(--ink);text-decoration:none}.intro{padding:54px 0 34px;border-bottom:1px solid var(--line)}.back,.meta,.eyebrow,figcaption{font: .72rem 'IBM Plex Mono',monospace;letter-spacing:.04em}.back{color:var(--green);text-decoration:none}.meta{display:block;color:var(--green);text-transform:uppercase;margin:30px 0 12px}.eyebrow{color:var(--soft);margin:18px 0 0}h1,h2{font-family:'Playfair Display',Georgia,serif;line-height:1.2}h1{font-size:clamp(2.1rem,5vw,3.3rem);color:var(--ocean);max-width:19ch;margin:0}h2{font-size:1.65rem;color:var(--ocean);margin:46px 0 14px}.dek{font-size:1.13rem;color:var(--soft);max-width:58ch;margin:18px 0 0}main{padding:34px 0 70px}p{max-width:70ch;margin:0 0 18px}figure{margin:28px 0;background:var(--raised);border:1px solid var(--line);padding:8px;border-radius:4px}figure img{display:block;width:100%;height:auto}figcaption{color:var(--soft);padding:10px 4px 2px;line-height:1.5}footer{border-top:1px solid var(--line);padding:24px 0 40px;color:var(--soft);font-size:.82rem}footer a{color:var(--ocean)}
+</style>
+</head>
+<body>
+<nav><div class="wrap"><a class="brand" href="../index.html">Erick Mulama Shituku</a></div></nav>
+<header class="intro"><div class="wrap"><a class="back" href="../index.html#articles">← All articles</a><span class="meta">Oct 12, 2026 · Aerial imagery · Ongoing project</span><h1>Mapping Fishing Boats on Pemba Island</h1><p class="dek">How a coastal imagery review is shaping a proposed MapSwipe workflow and a future GeoAI training dataset.</p></div></header>
+<main class="wrap">
+<p>Small fishing boats can be easy to miss in a broad coastal map. In high-resolution aerial imagery, they become visible one by one: pulled up on shore, moored near landing sites, or afloat close to the island. The challenge is turning those visible objects into trustworthy, reusable geographic data.</p>
+<p>On Pemba Island, I am leading the geospatial planning for a fishing boat mapping project using drone imagery. The work is ongoing. So far, the central task has been to establish whether the available imagery contains enough discernible boats to support a volunteer mapping exercise and, later, a carefully validated dataset for GeoAI.</p>
+<h2>First, establish what the imagery can support</h2>
+<p>The local collection comprises 116 georeferenced GeoTIFF images. I screened their footprints against a coastline reference, then used QGIS to prioritize coastal images for visual review. Coastline proximity was only a screening clue: some apparently coastal image footprints proved to be inland when inspected.</p>
+<p>Across 25 reviewed images, visual counts recorded 1,032 boat sightings. Most reviewed footprints did not overlap. One image overlapped a previously counted image containing 13 boats; even if all 13 were counted twice, the conservative minimum is 1,019 distinct visible boats. That clears the project's 1,000-boat visibility target. The counts are visual observations, not yet independently validated object labels or a completed training set.</p>
+<h2>Design MapSwipe around its actual output</h2>
+<p>The proposed next stage is a MapSwipe Locate Objects project. Volunteers would inspect small image tiles and indicate whether each contains no boats, one boat, or multiple boats. That can help focus attention across a large coastal area and bring more people into the mapping work.</p>
+<p>MapSwipe's tile responses are not precise boat bounding boxes or outlines. To build an object-detection dataset, the team still needs an agreed boat-level annotation format, a process for resolving uncertain cases, and quality checks. A raster tile-serving test and an agreed area of interest are also needed before a MapSwipe campaign can begin.</p>
+<h2>From volunteer mapping to GeoAI</h2>
+<p>With validated boat-level labels, imagery and annotations could support GeoAI models that detect fishing boats at scale. That is the intended direction, not a result already delivered. Model training would require careful dataset packaging, attention to duplicate imagery, and evaluation against held-out areas so performance reflects real coastal conditions.</p>
+<p>As project lead, my role spans imagery sourcing and preparation, the mapping workflow, coordination with collaborators, validation decisions, and eventual documentation and handover. The completed feasibility review gives the team a concrete starting point: visible boat volume is sufficient in the reviewed Pemba imagery. The remaining work is to turn that visibility into reliable labels and a reproducible mapping process.</p>
+</main>
+<footer><div class="wrap"><a href="../index.html#articles">← Back to Articles</a></div></footer>
+</body>
+</html>
