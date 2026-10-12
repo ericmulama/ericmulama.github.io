@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0c0c0e">
+<meta name="description" content="Selected marine, environmental, water-sector and spatial-systems work.">
+<meta name="author" content="Erick Mulama Shituku">
+<title>Selected Work — Erick Mulama Shituku</title>
+<link rel="stylesheet" href="site.css">
+</head>
+<body class="page page-work">
+<nav class="site-nav" aria-label="Main navigation"><div class="wrap nav-inner"><a class="brand" href="index.html">Erick Mulama Shituku</a><div class="navlinks"><a href="index.html">Overview</a><a href="work.html" aria-current="page">Work</a><a href="writing.html">Articles</a><a href="about.html">Experience</a></div></div></nav>
+<div class="data-strip" aria-label="Areas of practice"><div class="wrap"><span>GIS &amp; Remote Sensing</span><span>Marine Spatial Planning / Environmental MRV / Spatial Systems</span></div></div>
+<main>
+<section id="work">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num mono">01</span><h2>Selected Work</h2></div>
+    <p class="sec-intro">Five projects spanning marine spatial planning, coastal imagery and fishing boat mapping, water-sector GIS, national land-cover analysis, and spatial software.</p><nav class="project-index" aria-label="Project index"><a href="#marine-atlas">Marine Spatial Planning Atlas for Kwale &amp; Lamu Counties</a><a href="#water-gis">Enterprise GIS Readiness &amp; Roadmap for Njoro Kubwa Bulk Water Supply</a><a href="#land-cover">National LULC Baselines &amp; GHG/Carbon Accounting</a><a href="#fleetpulse">FleetPulse FMS</a><a href="#pemba">Pemba Island Fishing Boat Mapping</a></nav>
+
+    <!-- PLATE 01 -->
+    <article class="plate" id="marine-atlas">
+      <div class="plate-head">
+        <div class="plate-title">
+          <h3>Marine Spatial Planning Atlas for Kwale &amp; Lamu Counties</h3>
+          <div class="plate-client">Client: Nairobi Convention Secretariat / UNEP · GIS &amp; Remote Sensing Specialist</div>
+        </div>
+        <div class="plate-num mono">PLATE&nbsp;01 · 2026</div>
+      </div>
+      <div class="tags">
+        <span class="tag">PostGIS</span><span class="tag">ArcGIS REST</span><span class="tag">Python</span>
+        <span class="tag">ISO 19115/19139</span><span class="tag">Marine &amp; Coastal GIS</span>
+      </div>
+      <div class="plate-body">
+        <p>Built the geospatial backbone for Kenya's marine spatial plan across two coastal counties, pulling 17 thematic data layers (bathymetry, coral reefs, mangroves, seagrass, fisheries, marine protected areas, human uses) into a structured PostGIS database, then producing the thematic maps that planners and government officials actually use to make zoning decisions.</p>
+        <ul>
+          <li>Digitised spatial features from planning documents, technical reports, and participatory mapping sessions with coastal communities.</li>
+          <li>Designed a production PostGIS schema (8 schemas, 33 spatial tables, spatial indexes and audit triggers) with a Python ingestion pipeline that auto-discovers and reprojects incoming datasets.</li>
+          <li>Ran the spatial analysis behind the plan: conflict detection between human uses and marine habitats, conservation-gap analysis, and coverage against Kenya's 30×30 biodiversity targets.</li>
+          <li>Authored ISO 19115/19139-compliant metadata for every dataset so the atlas integrates into the national MSP data catalogue.</li>
+        </ul>
+      </div>
+
+      <div class="gallery">
+        <figure class="span2">
+          <img src="images/kwale-study-area.jpg" alt="Kwale County study area map showing the MSP planning boundary, coastline, mangroves, seagrass and coral reef along the southern coast">
+          <figcaption><span>Kwale County study area, 786k scale</span><span>WGS 1984 / UTM 37S</span></figcaption>
+        </figure>
+        <figure>
+          <img src="images/lamu-study-area.jpg" alt="Lamu County study area map showing the Lamu Archipelago and its mangrove ecosystem">
+          <figcaption><span>Lamu Archipelago study area</span><span>WGS 1984 / UTM 37S</span></figcaption>
+        </figure>
+        <figure>
+          <img src="images/base-context.jpg" alt="Base context map showing Kenya's territorial sea and exclusive economic zone along the Kwale-Lamu coast">
+          <figcaption><span>Territorial sea &amp; EEZ context</span><span>1:39M</span></figcaption>
+        </figure>
+        <figure>
+          <img src="images/marine-habitats-kwale.jpg" alt="Marine habitats map of Kwale showing mangrove cover, seagrass, coral reef and marine protected areas">
+          <figcaption><span>Marine habitats, Kwale</span><span>Mangrove / seagrass / reef</span></figcaption>
+        </figure>
+        <figure>
+          <img src="images/kwale-human-uses.jpg" alt="Marine human uses map of Kwale showing fisheries, tourism, infrastructure and cultural sites">
+          <figcaption><span>Human uses, Kwale</span><span>Fisheries / tourism / infrastructure</span></figcaption>
+        </figure>
+      </div>
+
+      <div class="metrics">
+        <div><span class="num">17</span><span class="lab">thematic data layers</span></div>
+        <div><span class="num">33</span><span class="lab">spatial database tables</span></div>
+        <div><span class="num">2</span><span class="lab">counties mapped</span></div>
+        <div><span class="num">3</span><span class="lab">CRS transforms in the pipeline</span></div>
+      </div>
+      <div class="plate-foot">
+        <span>Role: GIS &amp; Remote Sensing Specialist</span>
+        <span>Stack: PostGIS · GeoPandas · ArcGIS Online REST · QGIS · Leaflet</span>
+      </div>
+    </article>
+
+    <!-- PLATE 02 -->
+    <article class="plate" id="water-gis">
+      <div class="plate-head">
+        <div class="plate-title">
+          <h3>Enterprise GIS Readiness &amp; Roadmap for Njoro Kubwa Bulk Water Supply</h3>
+          <div class="plate-client">Client: TAVEVO Water &amp; Sewerage Co. Ltd, Taita Taveta County · GIS Specialist</div>
+        </div>
+        <div class="plate-num mono">PLATE&nbsp;02 · 2026</div>
+      </div>
+      <div class="tags">
+        <span class="tag">GIS Readiness Assessment</span><span class="tag">Stakeholder Engagement</span>
+        <span class="tag">Non-Revenue Water</span><span class="tag">Water-Sector GIS</span>
+      </div>
+      <div class="plate-body">
+        <p>Before a water utility can build a GIS, someone has to answer an unglamorous question honestly: is the organisation actually ready for one? This engagement assessed TAVEVO's governance, data, people, and technology against enterprise-GIS adoption, then translated the findings into a phased, costed roadmap the utility's board could act on.</p>
+        <p>Assessment spanned consultations with TAVEVO's technical, commercial, finance, legal, ICT and HR departments, alongside external regulators and stakeholders including WASREB, WRA, WSTF, the Water Tribunal, county water and lands departments, and the Ministry of Water. It evaluated spatial data completeness, positional accuracy, and institutional capacity for enterprise adoption.</p>
+      </div>
+
+      <div class="pillars">
+        <div class="pillar"><span class="k">Asset Management</span><p>Mapping pipelines, valves, tanks and reservoirs into a maintainable spatial inventory.</p></div>
+        <div class="pillar"><span class="k">Operational Intelligence</span><p>Turning field and billing data into geographic non-revenue-water and service insight.</p></div>
+        <div class="pillar"><span class="k">Customer Engagement</span><p>Coverage mapping to target underserved and low-income service areas.</p></div>
+        <div class="pillar"><span class="k">Planning &amp; Engineering</span><p>Spatial groundwork for hydraulic screening and network expansion planning.</p></div>
+      </div>
+
+      <p style="font-size:0.82rem;color:var(--ink-soft);margin:22px 0 6px;">Scope of works, as sequenced and delivered:</p>
+      <div class="flow">
+        <div class="flow-step"><span class="n">01</span><h4>Review &amp; scoping</h4></div>
+        <div class="flow-step"><span class="n">02</span><h4>GIS readiness &amp; needs assessment</h4></div>
+        <div class="flow-step"><span class="n">03</span><h4>Priority use-case ID</h4></div>
+        <div class="flow-step"><span class="n">04</span><h4>Conceptual system design</h4></div>
+        <div class="flow-step"><span class="n">05</span><h4>Hydraulic screening</h4></div>
+        <div class="flow-step"><span class="n">06</span><h4>Prototype web map</h4></div>
+        <div class="flow-step"><span class="n">07</span><h4>Costing &amp; roadmap</h4></div>
+        <div class="flow-step"><span class="n">08</span><h4>Validation &amp; reporting</h4></div>
+      </div>
+
+      <div class="metrics">
+        <div><span class="num">11+</span><span class="lab">institutions engaged</span></div>
+        <div><span class="num">4</span><span class="lab">benefit areas assessed</span></div>
+        <div><span class="num">8</span><span class="lab">phase delivery roadmap</span></div>
+      </div>
+      <div class="plate-foot">
+        <span>Role: GIS Specialist / Geospatial Technologies Team Member</span>
+        <span>Focus: governance · data · people · technology readiness</span>
+      </div>
+    </article>
+
+    <!-- PLATE 03 -->
+    <article class="plate" id="land-cover">
+      <div class="plate-head">
+        <div class="plate-title">
+          <h3>National LULC Baselines &amp; GHG/Carbon Accounting</h3>
+          <div class="plate-client">SLEEK Programme (Government of Kenya / Australian Aid) &amp; NASA's SERVIR ESA · GIS Analyst</div>
+        </div>
+        <div class="plate-num mono">PLATE&nbsp;03 · 2014–2017</div>
+      </div>
+      <div class="tags">
+        <span class="tag">Land Use / Land Cover</span><span class="tag">Change Detection</span>
+        <span class="tag">Tier 3 GHG Accounting</span><span class="tag">Remote Sensing</span>
+      </div>
+      <div class="plate-body">
+        <p>Earlier in the work, at RCMRD: building the earth-observation foundations that let a country report its greenhouse-gas emissions credibly. Kenya's <a href="https://www.dfat.gov.au/about-us/publications/Pages/kenya-system-land-based-emissions-estimation-mtr" target="_blank" rel="noopener">System for Land-based Emissions Estimation (SLEEK)</a>, backed by Australian Aid, needed high-precision land-use and land-cover baselines to feed its Full Lands Integration Tool (FLINT), the engine behind Tier 3 GHG accounting. In parallel, GHG/LULUCF mapping for NASA's <a href="https://servirglobal.net/Regions/ESAfrica" target="_blank" rel="noopener">SERVIR Eastern &amp; Southern Africa</a> programme extended the same methodology regionally.</p>
+      </div>
+
+      <div class="pipeline">
+        <div class="pipe-node">Satellite &amp; aerial imagery</div>
+        <div class="pipe-arrow">→</div>
+        <div class="pipe-node">Land cover classification</div>
+        <div class="pipe-arrow">→</div>
+        <div class="pipe-node">Multi-temporal change detection</div>
+        <div class="pipe-arrow">→</div>
+        <div class="pipe-node">FLINT / GHG accounting inputs</div>
+        <div class="pipe-arrow">→</div>
+        <div class="pipe-node">National carbon stock reporting</div>
+      </div>
+
+      <div class="plate-body">
+        <figure class="ref-figure">
+          <img src="images/kenya-lulc-2016.jpg" alt="Kenya national land cover classification map, 2016, showing forest, grassland, cropland, wetlands and settlement classes">
+          <figcaption>Kenya national land cover, 2016<br>RCMRD / SERVIR-Africa · ESA Sentinel-2 LULC<br>Same IPCC class scheme FLINT ingests</figcaption>
+        </figure>
+        <ul>
+          <li>Produced high-precision LULC baseline datasets and multi-temporal change-detection maps across Eastern and Southern Africa.</li>
+          <li>Streamlined multi-institutional remote-sensing workflows to improve accuracy and compliance with IPCC land-sector reporting guidelines.</li>
+          <li>Trained officials from RCMRD's member states, over 10 countries in all, on GIS, remote sensing and database management.</li>
+        </ul>
+      </div>
+      <div class="plate-foot">
+        <span>Role: GIS Analyst / GIS &amp; Remote Sensing Analyst</span>
+        <span>Programmes verified publicly via DFAT and NASA SERVIR Global</span>
+      </div>
+    </article>
+
+    <!-- PLATE 04 -->
+    <article class="plate" id="fleetpulse">
+      <div class="plate-head">
+        <div class="plate-title">
+          <h3>FleetPulse FMS</h3>
+          <div class="plate-client">Independent project, in active development · Full-Stack Engineer &amp; Spatial Systems Architect</div>
+        </div>
+        <div class="plate-num mono">PLATE&nbsp;04 · 2026</div>
+      </div>
+      <div class="tags">
+        <span class="tag">Django / DRF</span><span class="tag">PostGIS</span><span class="tag">Multi-Tenant SaaS</span>
+        <span class="tag">MapLibre GL</span><span class="tag">React 19</span><span class="tag">Redis</span>
+      </div>
+      <div class="plate-body">
+        <figure class="feature-figure">
+          <img src="images/fleetpulse-live-map.jpg" alt="FleetPulse live fleet tracking dashboard showing real-time vehicle position clusters and a latency chart along a Tanzania trunk route from Morogoro to Dar es Salaam">
+          <figcaption>Live fleet map, Tanzania trunk route · 51 vehicles tracked · MapLibre GL frontend · Real-time position clustering &amp; latency monitoring</figcaption>
+        </figure>
+        <p>FleetPulse is a fleet and logistics platform I'm building from scratch, the whole system this time, not just the GIS layer on top of someone else's product. It's where the geospatial work I do for clients meets the full-stack engineering side: a multi-tenant backend, live GPS telematics, and the mapping and dashboards that turn a moving fleet into something a manager can actually see and act on.</p>
+        <p>Each company's fleet data is isolated twice over: once in the application layer, and again with PostgreSQL row-level security policies at the database itself, so one tenant's vehicles are never reachable from another's session, even by a query that tries to go around the app. Geofences are stored as real PostGIS polygons rather than approximations. Incoming GPS pings get deduplicated, resolved to the right vehicle even when a tracker was reassigned partway through, and streamed live to a MapLibre tracking map on the dashboard.</p>
+        <ul>
+          <li>Multi-tenancy enforced independently at the application and database layers, with cross-tenant read and write attempts actually tested against a live Postgres instance rather than assumed safe.</li>
+          <li>A telematics pipeline handling event deduplication, time-bounded device-to-vehicle resolution, and a Redis-backed live-position store feeding the tracking map.</li>
+          <li>Fourteen domain modules so far, covering fleet and driver management, trip and stop detection, geofencing, fuel tracking, container and shipment logistics, driver safety reporting, and a client-facing portal.</li>
+          <li>438 automated tests, including the cross-tenant isolation tests that matter most for a multi-tenant product.</li>
+        </ul>
+      </div>
+
+      <div class="metrics">
+        <div><span class="num">76</span><span class="lab">commits shipped</span></div>
+        <div><span class="num">14</span><span class="lab">domain modules</span></div>
+        <div><span class="num">438</span><span class="lab">automated tests</span></div>
+        <div><span class="num">23.5k</span><span class="lab">lines of code</span></div>
+      </div>
+      <div class="plate-foot">
+        <span>Role: Solo full-stack engineer &amp; spatial systems architect</span>
+        <span>Stack: Django · DRF · PostgreSQL/PostGIS · Redis · React 19 · MapLibre GL · Docker</span>
+      </div>
+    </article>
+
+    <!-- PLATE 05 -->
+    <article class="plate" id="pemba">
+      <div class="plate-head">
+        <div class="plate-title">
+          <h3>Pemba Island Fishing Boat Mapping</h3>
+          <div class="plate-client">Ongoing geospatial project · Geospatial Project Lead</div>
+        </div>
+        <div class="plate-num mono">PLATE&nbsp;05 · 2026–Present</div>
+      </div>
+      <div class="tags">
+        <span class="tag">Drone Imagery</span><span class="tag">QGIS</span><span class="tag">MapSwipe</span><span class="tag">Annotation</span><span class="tag">GeoAI</span>
+      </div>
+      <div class="plate-body">
+        <p>Leading the geospatial planning for fishing boat mapping on Pemba Island. I inventoried 116 georeferenced aerial images and screened coastal coverage to assess whether the imagery could support a volunteer mapping and GeoAI data workflow.</p>
+        <ul>
+          <li>Visual review of 25 images recorded 1,032 boat sightings; a conservative overlap adjustment gives at least 1,019 distinct visible boats in the reviewed imagery.</li>
+          <li>Preparing the next steps: a raster tile-serving test, a MapSwipe Locate Objects workflow, and a separate validated boat-level annotation process.</li>
+          <li>Coordinating project scope, imagery preparation and quality requirements for an eventual open dataset.</li>
+        </ul>
+        <p><a href="articles/mapping-fishing-boats-pemba-island.html">Read the project article &rarr;</a></p>
+      </div>
+      <div class="plate-foot">
+        <span>Role: Geospatial Project Lead</span>
+        <span>Status: feasibility review complete · mapping and annotation planned</span>
+      </div>
+    </article>
+
+
+  </div>
+</section>
+</main>
+<footer class="site-footer"><div class="wrap"><span>© 2026 Erick Mulama Shituku · Nairobi, Kenya</span><span><a href="about.html#contact">Contact</a> / <a href="https://www.linkedin.com/in/erickmulama" rel="noopener">LinkedIn</a> / <a href="mailto:ericmulama@gmail.com">Email</a></span></div></footer><script data-goatcounter="https://ericmulama.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
