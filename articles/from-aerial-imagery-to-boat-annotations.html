@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0c0c0e">
+<meta name="description" content="A practical guide to turning aerial imagery into consistent, reusable boat annotations.">
+<meta name="author" content="Erick Mulama Shituku">
+<title>From Aerial Imagery to Boat Annotations — Erick Mulama Shituku</title>
+<link rel="stylesheet" href="../site.css">
+</head>
+<body class="article-page">
+<nav class="site-nav" aria-label="Main navigation"><div class="wrap nav-inner"><a class="brand" href="../index.html">Erick Mulama Shituku</a><div class="navlinks"><a href="../index.html">Overview</a><a href="../work.html">Work</a><a href="../writing.html" aria-current="page">Articles</a><a href="../about.html">Experience</a><a href="../index.html#contact">Contact</a></div></div></nav>
+<div class="data-strip" aria-label="Areas of practice"><div class="wrap"><span>GIS &amp; Remote Sensing</span><span>Marine Spatial Planning / Environmental MRV / Spatial Systems</span></div></div>
+<header class="intro"><div class="wrap"><a class="back" href="../writing.html">← All articles</a><span class="meta">GIS &amp; Remote Sensing · Methods · November 2026</span><h1>From Aerial Imagery to Boat Annotations</h1><p class="byline">By Erick Mulama Shituku</p></div></header>
+<main class="wrap">
+<div class="gallery" aria-label="Examples of boats in aerial imagery">
+<a href="../images/pemba-boats-overview.jpg"><img src="../images/pemba-boats-overview.jpg" alt="Several boats visible in clear coastal water from above" fetchpriority="high"></a>
+<a href="../images/pemba-boats-closeup.jpg"><img src="../images/pemba-boats-closeup.jpg" alt="Close aerial view of two boats in shallow water" loading="lazy"></a>
+<a href="../images/pemba-boats-unmarked.jpg"><img src="../images/pemba-boats-unmarked.jpg" alt="Aerial image showing several boats before location markers are added" loading="lazy"></a>
+<a href="../images/pemba-boats-marked.jpg"><img src="../images/pemba-boats-marked.jpg" alt="Same coastal scene with green markers placed over visible boats" loading="lazy"></a>
+</div>
+<p class="gallery-caption">Examples of boats at different scales in aerial imagery. Green markers indicate mapped locations in one example; a marker is not itself a boat outline.</p>
+<h2>Start with images that can answer the question</h2>
+<p>Turning aerial images into useful map data takes more than spotting boats and drawing around them. It involves choosing images carefully, checking what can be seen, avoiding duplicate counts, and recording each mapped object consistently.</p>
+<p>Before mapping begins, the images need to show the area and level of detail required. For small objects such as boats, resolution matters: there must be enough detail to distinguish a boat from surrounding water, shoreline, shadows, or other objects.</p>
+<p>The image date matters too. Aerial imagery records what was visible when the image was taken. Boats may have moved since then, so an image cannot be treated as a current count of vessels. Record where each image came from and what its licence allows so others can understand and reuse the resulting data appropriately.</p>
+<h2>Check coverage before counting</h2>
+<p>A collection may contain many images, but some may show the same place. If a boat appears in two overlapping images, counting both sightings as separate boats inflates the total.</p>
+<p>Compare each image’s footprint—the geographic area it covers—to find overlaps and possible duplicate sightings. When estimating visible boats, state how many images were reviewed, how they were selected, and how overlap was handled. A count from selected images is not a count of every boat in the wider area.</p>
+<h2>Separate image screening from object mapping</h2>
+<p>Large image collections can take time to inspect in detail. A screening step can help identify areas worth examining more closely. For example, a contributor might mark a small square if it contains one or more boats.</p>
+<p>That mark answers, “Is there a boat somewhere in this square?” It does not say how many boats are present or show each boat’s shape and position. To create individual boat records, a mapper must inspect the relevant image more closely and draw a separate geometry around each visible boat. Screening locates possible objects; object-level annotations describe individual objects.</p>
+<h2>Draw and record annotations consistently</h2>
+<p>An annotation is a digital shape linked to a label, such as “boat.” Depending on the purpose and image quality, the shape may be a point, rectangle, or outline following the object’s edges. Choose one format and apply it consistently.</p>
+<p>Each annotation should retain enough information to trace it back to its source image. Useful details include the image identifier, label, annotation method, and relevant date or contributor information. Without that link, it can be difficult to verify a feature or understand the conditions under which it was mapped.</p>
+<h2>Check the data before reporting a total</h2>
+<p>A file can contain records that look valid in a table but are unusable on a map. Geometries may be empty, misplaced, duplicated, or assigned the wrong label. Basic checks can identify these problems before the data is shared or analyzed.</p>
+<p>A reported feature count should make clear what is being counted. The number of annotation records is not automatically the number of distinct boats: duplicates may remain, some boats may have been missed, and an annotation may not correspond to a verified vessel.</p>
+<p>Quality checks can include reviewing a sample against the imagery, checking whether shapes align with boats, looking for duplicates, and recording corrections. Document the method and results so readers can judge the reliability of the data.</p>
+<h2>Make the result reusable</h2>
+<p>A useful geospatial dataset needs more than mapped shapes. Include source-image references, image dates, licences and attribution, coordinate system, annotation instructions, and known limitations. These details help others understand how the data was created, repeat the process, or decide whether it suits their needs.</p>
+<p>From image selection to final checks, each step affects what the finished data can reliably say. Clear methods help distinguish a visible object, a mapped annotation, and a claim about the real world.</p>
+</main>
+<footer class="site-footer"><div class="wrap"><span>© 2026 Erick Mulama Shituku · Nairobi, Kenya</span><span><a href="../index.html#contact">Contact</a> / <a href="https://www.linkedin.com/in/erickmulama" rel="noopener">LinkedIn</a> / <a href="mailto:ericmulama@gmail.com">Email</a></span></div></footer><script data-goatcounter="https://ericmulama.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
